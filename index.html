@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Profit Margin Calculator — Instant Results | BizMargin</title>
+<meta name="description" content="Free profit margin calculator for Amazon FBA sellers, dropshippers and small businesses. Calculate gross margin, markup, selling price, break-even and FBA margins instantly.">
+<meta name="keywords" content="profit margin calculator, amazon fba margin calculator, gross margin calculator, markup calculator, break even calculator, dropshipping margin calculator">
+<link rel="canonical" href="https://bizmargin.com/">
+<meta property="og:title" content="Free Profit Margin Calculator — BizMargin">
+<meta property="og:description" content="Calculate profit margins, markup, FBA fees, selling prices and break-even points instantly. Free, no sign-up.">
+<meta property="og:url" content="https://bizmargin.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"BizMargin","url":"https://bizmargin.com","description":"Free profit margin and markup calculator for Amazon sellers, dropshippers and small businesses.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#059669;--green-d:#047857;--green-l:#ecfdf5;--green-ll:#d1fae5;
+  --ink:#0f172a;--ink2:#334155;--ink3:#64748b;--ink4:#94a3b8;
+  --bg:#f8fafc;--bg2:#f1f5f9;--white:#fff;--border:#e2e8f0;--border2:#cbd5e1;
+  --amber:#d97706;--amber-l:#fef3c7;--red:#dc2626;--red-l:#fee2e2;--blue:#2563eb;
+  --r:8px;--r2:12px;
+  --sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 4px 6px -1px rgba(0,0,0,.08);--sh3:0 10px 15px -3px rgba(0,0,0,.1);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;min-height:100vh}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+nav{background:var(--ink);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100}
+.nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-icon{width:32px;height:32px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.nav-name{font-weight:700;font-size:16px;color:#fff;letter-spacing:-.3px}
+.nav-name span{color:#6ee7b7}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:6px 12px;border-radius:var(--r);color:rgba(255,255,255,.7);font-size:13px;font-weight:500;cursor:pointer;border:none;background:none;text-decoration:none;transition:all .15s}
+.nav-link:hover{background:rgba(255,255,255,.1);color:#fff}
+
+.trust-bar{background:#f0fdf4;border-bottom:1px solid #bbf7d0;padding:6px 24px;display:flex;align-items:center;gap:20px;font-size:12px;color:#166534;flex-wrap:wrap}
+@media(max-width:480px){.trust-bar{display:none}}
+
+.ad-leader{background:var(--white);border-bottom:1px solid var(--border);height:90px;display:flex;align-items:center;justify-content:center;color:var(--ink4);font-size:11px;letter-spacing:.5px}
+
+.hero{text-align:center;padding:36px 24px 20px;max-width:700px;margin:0 auto}
+.hero h1{font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-1px;line-height:1.2;margin-bottom:8px}
+.hero h1 span{color:var(--green)}
+.hero p{font-size:15px;color:var(--ink3);margin-bottom:20px}
+
+.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+
+.calc-tabs{display:flex;gap:4px;background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:6px;margin-bottom:20px;overflow-x:auto}
+.calc-tabs::-webkit-scrollbar{display:none}
+.calc-tab{flex:1;padding:10px 8px;border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer;border:none;background:none;color:var(--ink3);white-space:nowrap;transition:all .15s;min-width:80px}
+.calc-tab:hover{background:var(--bg);color:var(--ink)}
+.calc-tab.active{background:var(--green);color:#fff;box-shadow:var(--sh)}
+
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+@media(max-width:640px){.calc-grid{grid-template-columns:1fr}}
+
+.panel{background:var(--white);border-radius:var(--r2);border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.panel-title{font-size:13px;font-weight:600;color:var(--ink2);padding:14px 18px 12px;border-bottom:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.panel-body{padding:18px}
+
+.field{margin-bottom:12px}
+.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:4px}
+.input-row{display:flex;gap:6px;align-items:center}
+.input-wrap{position:relative;flex:1}
+.input-prefix,.input-suffix{position:absolute;font-size:13px;font-weight:600;color:var(--ink3);pointer-events:none;top:50%;transform:translateY(-50%)}
+.input-prefix{left:10px}
+.input-suffix{right:10px}
+.field input[type=number]{width:100%;padding:9px 32px 9px 10px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:15px;font-weight:600;color:var(--ink);background:var(--white);transition:border-color .15s,box-shadow .15s;-moz-appearance:textfield;font-family:inherit}
+.field input[type=number]::-webkit-outer-spin-button,.field input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+.field input[type=number]:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(5,150,105,.1)}
+.field input.invalid{border-color:var(--red);background:var(--red-l)}
+.has-prefix input{padding-left:28px}
+.has-suffix input{padding-right:32px}
+.field select{width:100%;padding:9px 10px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:14px;color:var(--ink);background:var(--white);font-family:inherit}
+.err-msg{font-size:11px;color:var(--red);margin-top:3px;display:none}
+.err-msg.show{display:block}
+
+.step-btn{padding:6px 10px;border:1px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--ink2);cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;flex-shrink:0}
+.step-btn:hover{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+
+.slider-wrap{margin-top:6px}
+input[type=range]{width:100%;height:4px;border-radius:2px;accent-color:var(--green);cursor:pointer}
+
+.results{background:var(--green-l);border-radius:var(--r);padding:14px;margin-top:4px}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--green-ll)}
+.result-row:last-child{border-bottom:none;padding-top:10px;margin-top:4px}
+.result-label{font-size:13px;color:var(--ink2)}
+.result-value{font-size:15px;font-weight:700;color:var(--ink);text-align:right}
+.result-row.highlight .result-value{font-size:22px;color:var(--green-d)}
+.result-row.highlight .result-label{font-weight:600;font-size:14px}
+.result-pill{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;margin-left:6px;vertical-align:middle}
+.pill-green{background:var(--green-ll);color:var(--green-d)}
+.pill-amber{background:var(--amber-l);color:#92400e}
+.pill-red{background:var(--red-l);color:#991b1b}
+
+.warning-box{background:var(--red-l);border:1px solid #fca5a5;border-radius:var(--r);padding:10px 14px;font-size:13px;color:#991b1b;font-weight:500;margin-top:10px;display:none}
+.warning-box.show{display:block}
+
+.gauge-wrap{margin:10px 0 4px;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.gauge-fill{height:100%;border-radius:3px;transition:width .3s,background .3s}
+
+.info-box{background:var(--bg);border-left:3px solid var(--green);border-radius:0 var(--r) var(--r) 0;padding:10px 14px;margin-top:10px;font-size:12px;color:var(--ink3);line-height:1.6}
+.info-box strong{color:var(--ink2)}
+
+.presets{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.preset-btn{padding:4px 10px;border:1px solid var(--border2);border-radius:20px;background:none;font-size:11px;font-weight:500;cursor:pointer;color:var(--ink2);transition:all .15s}
+.preset-btn:hover{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+
+.action-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.act-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--border2);border-radius:var(--r);background:var(--white);font-size:12px;font-weight:600;cursor:pointer;color:var(--ink2);transition:all .15s}
+.act-btn:hover{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+
+.history-section{margin-top:16px}
+.history-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--ink4);margin-bottom:8px}
+.history-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);margin-bottom:6px;cursor:pointer;font-size:12px;transition:border-color .15s}
+.history-item:hover{border-color:var(--green)}
+.history-item .h-name{font-weight:600;color:var(--ink2)}
+.history-item .h-meta{color:var(--ink4)}
+
+.cta-box{background:linear-gradient(135deg,var(--green) 0%,var(--green-d) 100%);border-radius:var(--r2);padding:28px 24px;text-align:center;color:#fff;margin-bottom:32px}
+.cta-box h3{font-size:20px;font-weight:700;margin-bottom:8px}
+.cta-box p{font-size:14px;opacity:.85;margin-bottom:16px}
+.cta-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cta-btn{padding:10px 20px;border-radius:var(--r);font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.cta-btn-white{background:#fff;color:var(--green-d)}
+.cta-btn-white:hover{background:#f0fdf4}
+.cta-btn-ghost{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.cta-btn-ghost:hover{background:rgba(255,255,255,.25)}
+
+.bottom-grid{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start;margin-bottom:40px}
+@media(max-width:640px){.bottom-grid{grid-template-columns:1fr}}
+.ad-rect-wrap{background:var(--bg);border:2px dashed var(--border2);border-radius:var(--r);height:250px;display:flex;align-items:center;justify-content:center;color:var(--ink4);font-size:11px;letter-spacing:.5px}
+
+/* Cookie banner */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--ink);color:rgba(255,255,255,.85);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:200;font-size:12px;box-shadow:0 -4px 12px rgba(0,0,0,.2);flex-wrap:wrap}
+.cookie-banner a{color:#6ee7b7;text-decoration:none}
+.cookie-actions{display:flex;gap:8px;flex-shrink:0}
+.cookie-btn{padding:7px 16px;border-radius:var(--r);font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+.cookie-accept{background:var(--green);color:#fff}
+.cookie-decline{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+
+/* Toast */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:var(--r);font-size:13px;font-weight:500;z-index:300;box-shadow:var(--sh3);transition:opacity .3s;pointer-events:none}
+
+footer{background:var(--ink);padding:20px 24px;text-align:center;font-size:12px;color:rgba(255,255,255,.4)}
+footer a{color:rgba(255,255,255,.5);text-decoration:none;margin:0 8px}
+footer a:hover{color:#fff}
+
+.pane{display:none}.pane.active{display:block}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner" style="display:none">
+  <span>We use cookies for analytics and ads. See our <a href="#">Privacy Policy</a>.</span>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-decline" onclick="handleConsent(false)">Decline</button>
+    <button class="cookie-btn cookie-accept" onclick="handleConsent(true)">Accept</button>
+  </div>
+</div>
+
+<nav>
+  <a class="nav-brand" href="#" aria-label="BizMargin home">
+    <div class="nav-icon" aria-hidden="true">📊</div>
+    <span class="nav-name">Biz<span>Margin</span></span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="https://bizinvoicegen.com" target="_blank" rel="noopener">Free Invoices</a>
+    <a class="nav-link" href="https://bizqrgen.com" target="_blank" rel="noopener">Free QR Codes</a>
+  </div>
+</nav>
+
+<div class="trust-bar" role="note">
+  <span>🔒 No sign-up required</span>
+  <span>⚡ Instant results</span>
+  <span>💾 Scenarios auto-saved locally</span>
+  <span>✅ 100% free</span>
+</div>
+
+<div class="ad-leader" role="complementary" aria-label="Advertisement"><!-- AdSense 728×90 —— paste ad code here -->Advertisement · 728×90</div>
+
+<div class="hero">
+  <h1>Free <span>Profit Margin</span> Calculator</h1>
+  <p>For Amazon FBA sellers, dropshippers and small business owners. Calculate margins, markup, selling prices and break-even instantly.</p>
+</div>
+
+<div class="wrap">
+
+<div class="calc-tabs" role="tablist" aria-label="Calculator type">
+  <button class="calc-tab active" role="tab" aria-selected="true" onclick="switchCalc('margin',this)">Profit Margin</button>
+  <button class="calc-tab" role="tab" aria-selected="false" onclick="switchCalc('markup',this)">Markup</button>
+  <button class="calc-tab" role="tab" aria-selected="false" onclick="switchCalc('selling',this)">Selling Price</button>
+  <button class="calc-tab" role="tab" aria-selected="false" onclick="switchCalc('breakeven',this)">Break Even</button>
+  <button class="calc-tab" role="tab" aria-selected="false" onclick="switchCalc('fba',this)">Amazon FBA</button>
+</div>
+
+<!-- PANE 1: PROFIT MARGIN -->
+<div id="pane-margin" class="pane active" role="tabpanel">
+<div class="calc-grid">
+  <div class="panel">
+    <div class="panel-title">📊 Profit Margin Calculator</div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="m-currency">Currency</label>
+        <select id="m-currency" onchange="calcMargin()">
+          <option value="USD">$ USD</option><option value="GBP">£ GBP</option><option value="EUR">€ EUR</option><option value="JPY">¥ JPY</option><option value="AUD">A$ AUD</option><option value="CAD">C$ CAD</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="m-cost">Cost Price</label>
+        <div class="input-row">
+          <div class="input-wrap"><input type="number" id="m-cost" value="50" min="0" step="0.01" aria-label="Cost price" oninput="db_margin()"></div>
+          <button class="step-btn" onclick="adj('m-cost',-1)" aria-label="Decrease cost">−</button>
+          <button class="step-btn" onclick="adj('m-cost',1)" aria-label="Increase cost">+</button>
+        </div>
+        <div class="err-msg" id="m-cost-err" role="alert">Cost must be a positive number</div>
+      </div>
+      <div class="field">
+        <label for="m-sell">Selling Price</label>
+        <div class="input-row">
+          <div class="input-wrap"><input type="number" id="m-sell" value="100" min="0" step="0.01" aria-label="Selling price" oninput="db_margin()"></div>
+          <button class="step-btn" onclick="adj('m-sell',-1)" aria-label="Decrease selling price">−</button>
+          <button class="step-btn" onclick="adj('m-sell',1)" aria-label="Increase selling price">+</button>
+        </div>
+        <div class="err-msg" id="m-sell-err" role="alert">Selling price must be greater than zero</div>
+      </div>
+      <div class="info-box">Gross margin = (Revenue − Cost) ÷ Revenue × 100<br><strong>Note:</strong> Gross margin ignores overheads — use break-even for full picture.</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">📈 Results <span style="font-size:11px;font-weight:400;color:var(--ink4)" aria-live="polite" id="m-live-label"></span></div>
+    <div class="panel-body">
+      <div class="results" aria-live="polite" aria-label="Margin calculation results">
+        <div class="result-row"><span class="result-label">Revenue</span><span class="result-value" id="m-r-revenue">$100.00</span></div>
+        <div class="result-row"><span class="result-label">Cost</span><span class="result-value" id="m-r-cost">$50.00</span></div>
+        <div class="result-row"><span class="result-label">Gross Profit</span><span class="result-value" id="m-r-profit">$50.00</span></div>
+        <div class="result-row highlight">
+          <span class="result-label">Profit Margin</span>
+          <span class="result-value" id="m-r-margin">50.00%</span>
+        </div>
+      </div>
+      <div class="warning-box" id="m-warning" role="alert">⚠️ Unprofitable — selling price is below cost. Increase price or reduce costs.</div>
+      <div class="gauge-wrap" role="meter" aria-label="Margin health gauge"><div class="gauge-fill" id="m-gauge" style="width:50%;background:var(--green)"></div></div>
+      <div class="info-box" id="m-tip">A 50% gross margin is excellent. Target 40%+ for physical goods, 60%+ for digital products.</div>
+      <div class="action-row">
+        <button class="act-btn" onclick="saveScenario('margin')" aria-label="Save this scenario">💾 Save</button>
+        <button class="act-btn" onclick="copyLink()" aria-label="Copy shareable link">🔗 Share</button>
+      </div>
+      <div class="history-section" id="m-history"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PANE 2: MARKUP -->
+<div id="pane-markup" class="pane" role="tabpanel">
+<div class="calc-grid">
+  <div class="panel">
+    <div class="panel-title">🏷️ Markup Calculator</div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="mk-currency">Currency</label>
+        <select id="mk-currency" onchange="calcMarkup()">
+          <option value="USD">$ USD</option><option value="GBP">£ GBP</option><option value="EUR">€ EUR</option><option value="JPY">¥ JPY</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="mk-cost">Cost Price</label>
+        <div class="input-row">
+          <div class="input-wrap"><input type="number" id="mk-cost" value="40" min="0" step="0.01" oninput="db_markup()"></div>
+          <button class="step-btn" onclick="adj('mk-cost',-1)">−</button>
+          <button class="step-btn" onclick="adj('mk-cost',1)">+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="mk-pct">Markup Percentage</label>
+        <div class="input-row">
+          <div class="input-wrap has-suffix"><span class="input-suffix">%</span><input type="number" id="mk-pct" value="50" min="0" step="0.1" oninput="document.getElementById('mk-slider').value=this.value;db_markup()"></div>
+        </div>
+        <div class="slider-wrap"><input type="range" min="0" max="300" value="50" id="mk-slider" oninput="document.getElementById('mk-pct').value=this.value;db_markup()" aria-label="Markup percentage slider"></div>
+      </div>
+      <div class="info-box"><strong>Markup ≠ Margin.</strong> A 100% markup = 50% margin. A 50% markup = 33.3% margin. Use the right metric for your business.</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">📈 Results</div>
+    <div class="panel-body">
+      <div class="results" aria-live="polite">
+        <div class="result-row"><span class="result-label">Cost Price</span><span class="result-value" id="mk-r-cost">$40.00</span></div>
+        <div class="result-row"><span class="result-label">Markup Amount</span><span class="result-value" id="mk-r-amt">$20.00</span></div>
+        <div class="result-row highlight"><span class="result-label">Selling Price</span><span class="result-value" id="mk-r-sell">$60.00</span></div>
+        <div class="result-row"><span class="result-label">Equivalent Margin</span><span class="result-value" id="mk-r-margin">33.33%</span></div>
+      </div>
+      <div class="action-row">
+        <button class="act-btn" onclick="saveScenario('markup')">💾 Save</button>
+        <button class="act-btn" onclick="copyLink()">🔗 Share</button>
+      </div>
+      <div class="history-section" id="mk-history"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PANE 3: SELLING PRICE -->
+<div id="pane-selling" class="pane" role="tabpanel">
+<div class="calc-grid">
+  <div class="panel">
+    <div class="panel-title">💰 Selling Price Calculator</div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="sp-currency">Currency</label>
+        <select id="sp-currency" onchange="calcSelling()">
+          <option value="USD">$ USD</option><option value="GBP">£ GBP</option><option value="EUR">€ EUR</option><option value="JPY">¥ JPY</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="sp-cost">Cost Price</label>
+        <div class="input-row">
+          <div class="input-wrap"><input type="number" id="sp-cost" value="30" min="0" step="0.01" oninput="db_selling()"></div>
+          <button class="step-btn" onclick="adj('sp-cost',-1)">−</button>
+          <button class="step-btn" onclick="adj('sp-cost',1)">+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="sp-margin">Desired Profit Margin</label>
+        <div class="input-row">
+          <div class="input-wrap has-suffix"><span class="input-suffix">%</span><input type="number" id="sp-margin" value="40" min="1" max="99" step="0.1" oninput="document.getElementById('sp-slider').value=this.value;db_selling()"></div>
+        </div>
+        <div class="slider-wrap"><input type="range" min="1" max="99" value="40" id="sp-slider" oninput="document.getElementById('sp-margin').value=this.value;db_selling()" aria-label="Desired margin slider"></div>
+      </div>
+      <div class="info-box">Selling Price = Cost ÷ (1 − Margin%) — This ensures your margin is calculated correctly, not markup.</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">📈 Results</div>
+    <div class="panel-body">
+      <div class="results" aria-live="polite">
+        <div class="result-row"><span class="result-label">Your Cost</span><span class="result-value" id="sp-r-cost">$30.00</span></div>
+        <div class="result-row"><span class="result-label">Gross Profit</span><span class="result-value" id="sp-r-profit">$20.00</span></div>
+        <div class="result-row highlight"><span class="result-label">Selling Price</span><span class="result-value" id="sp-r-sell">$50.00</span></div>
+        <div class="result-row"><span class="result-label">Equivalent Markup</span><span class="result-value" id="sp-r-markup">66.67%</span></div>
+      </div>
+      <div class="gauge-wrap"><div class="gauge-fill" id="sp-gauge" style="width:40%;background:var(--green)"></div></div>
+      <div class="action-row">
+        <button class="act-btn" onclick="saveScenario('selling')">💾 Save</button>
+        <button class="act-btn" onclick="copyLink()">🔗 Share</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PANE 4: BREAK EVEN -->
+<div id="pane-breakeven" class="pane" role="tabpanel">
+<div class="calc-grid">
+  <div class="panel">
+    <div class="panel-title">⚖️ Break-Even Calculator</div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="be-currency">Currency</label>
+        <select id="be-currency" onchange="calcBreakeven()">
+          <option value="USD">$ USD</option><option value="GBP">£ GBP</option><option value="EUR">€ EUR</option><option value="JPY">¥ JPY</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="be-fixed">Fixed Costs (monthly)</label>
+        <div class="input-wrap"><input type="number" id="be-fixed" value="5000" min="0" step="1" oninput="db_breakeven()"></div>
+      </div>
+      <div class="field">
+        <label for="be-var">Variable Cost per Unit</label>
+        <div class="input-wrap"><input type="number" id="be-var" value="25" min="0" step="0.01" oninput="db_breakeven()"></div>
+        <div class="err-msg" id="be-var-err" role="alert">Variable cost cannot exceed selling price</div>
+      </div>
+      <div class="field">
+        <label for="be-price">Selling Price per Unit</label>
+        <div class="input-wrap"><input type="number" id="be-price" value="75" min="0.01" step="0.01" oninput="db_breakeven()"></div>
+      </div>
+      <div class="info-box">Break-even units = Fixed Costs ÷ (Selling Price − Variable Cost). Every unit sold beyond break-even generates pure profit.</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">📈 Results</div>
+    <div class="panel-body">
+      <div class="results" aria-live="polite">
+        <div class="result-row"><span class="result-label">Contribution Margin/Unit</span><span class="result-value" id="be-r-contrib">$50.00</span></div>
+        <div class="result-row"><span class="result-label">Contribution Margin %</span><span class="result-value" id="be-r-contribpct">66.67%</span></div>
+        <div class="result-row highlight"><span class="result-label">Break-Even Units</span><span class="result-value" id="be-r-units">100 units</span></div>
+        <div class="result-row highlight"><span class="result-label">Break-Even Revenue</span><span class="result-value" id="be-r-rev">$7,500</span></div>
+      </div>
+      <div class="warning-box" id="be-warning" role="alert">⚠️ Unprofitable — variable cost exceeds or equals selling price. Every unit sold loses money.</div>
+      <div class="info-box" id="be-tip">To cover $5,000 in fixed costs at $75/unit, you need to sell 100 units/month. Every unit beyond that is profit.</div>
+      <div class="action-row">
+        <button class="act-btn" onclick="saveScenario('breakeven')">💾 Save</button>
+        <button class="act-btn" onclick="copyLink()">🔗 Share</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PANE 5: FBA -->
+<div id="pane-fba" class="pane" role="tabpanel">
+<div class="calc-grid">
+  <div class="panel">
+    <div class="panel-title">📦 Amazon FBA Margin Calculator</div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="fba-mkt">Marketplace Preset</label>
+        <div class="presets" id="fba-presets">
+          <button class="preset-btn active" onclick="setFBAPreset('us',this)">🇺🇸 US</button>
+          <button class="preset-btn" onclick="setFBAPreset('uk',this)">🇬🇧 UK</button>
+          <button class="preset-btn" onclick="setFBAPreset('eu',this)">🇪🇺 EU</button>
+          <button class="preset-btn" onclick="setFBAPreset('ca',this)">🇨🇦 CA</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fba-cat">Category (sets referral fee)</label>
+        <select id="fba-cat" onchange="setCatFee()" aria-label="Amazon product category">
+          <option value="15">General (15%)</option>
+          <option value="8">Electronics (8%)</option>
+          <option value="15">Toys & Games (15%)</option>
+          <option value="17">Clothing & Apparel (17%)</option>
+          <option value="15">Home & Kitchen (15%)</option>
+          <option value="6">Books (6%)</option>
+          <option value="15">Sports & Outdoors (15%)</option>
+          <option value="12">Beauty & Personal Care (12%)</option>
+          <option value="8">Computers (8%)</option>
+          <option value="15">Tools & Home Improvement (15%)</option>
+          <option value="custom">Custom %</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fba-price">Amazon Selling Price</label>
+        <div class="input-row">
+          <div class="input-wrap"><input type="number" id="fba-price" value="29.99" min="0" step="0.01" oninput="db_fba()"></div>
+          <button class="step-btn" onclick="adj('fba-price',-1)">−</button>
+          <button class="step-btn" onclick="adj('fba-price',1)">+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fba-cost">Product Cost (incl. shipping to Amazon)</label>
+        <div class="input-wrap"><input type="number" id="fba-cost" value="8" min="0" step="0.01" oninput="db_fba()"></div>
+      </div>
+      <div class="field">
+        <label for="fba-ref">Referral Fee %</label>
+        <div class="input-wrap has-suffix"><span class="input-suffix">%</span><input type="number" id="fba-ref" value="15" min="0" max="50" step="0.5" oninput="db_fba()"></div>
+      </div>
+      <div class="field">
+        <label for="fba-fee">FBA Fulfillment Fee</label>
+        <div class="input-wrap"><input type="number" id="fba-fee" value="3.50" min="0" step="0.01" oninput="db_fba()"></div>
+        <div class="presets" style="margin-top:6px">
+          <button class="preset-btn" onclick="setFee(3.22)">Small std $3.22</button>
+          <button class="preset-btn" onclick="setFee(4.75)">Large std $4.75</button>
+          <button class="preset-btn" onclick="setFee(9.73)">Oversize $9.73</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fba-other">Other Costs (PPC, storage, prep)</label>
+        <div class="input-wrap"><input type="number" id="fba-other" value="2" min="0" step="0.01" oninput="db_fba()"></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">📈 FBA Results</div>
+    <div class="panel-body">
+      <div class="results" aria-live="polite" aria-label="FBA margin results">
+        <div class="result-row"><span class="result-label">Selling Price</span><span class="result-value" id="fba-r-price">$29.99</span></div>
+        <div class="result-row"><span class="result-label">Amazon Referral Fee</span><span class="result-value" id="fba-r-ref" style="color:var(--red)">−$4.50</span></div>
+        <div class="result-row"><span class="result-label">FBA Fulfillment Fee</span><span class="result-value" id="fba-r-fee" style="color:var(--red)">−$3.50</span></div>
+        <div class="result-row"><span class="result-label">Product Cost</span><span class="result-value" id="fba-r-cost" style="color:var(--red)">−$8.00</span></div>
+        <div class="result-row"><span class="result-label">Other Costs</span><span class="result-value" id="fba-r-other" style="color:var(--red)">−$2.00</span></div>
+        <div class="result-row highlight"><span class="result-label">Net Profit / Unit</span><span class="result-value" id="fba-r-profit">$11.99</span></div>
+        <div class="result-row highlight"><span class="result-label">Net Margin</span><span class="result-value" id="fba-r-margin">40.0%</span></div>
+      </div>
+      <div class="warning-box" id="fba-warning" role="alert">⚠️ Unprofitable — total costs exceed selling price. Increase price, reduce costs or find a different product.</div>
+      <div class="gauge-wrap"><div class="gauge-fill" id="fba-gauge" style="width:40%;background:var(--green)"></div></div>
+      <div class="info-box">Target <strong>25%+ net margin</strong> for FBA. Below 20% leaves little room for ad spend or price competition. Below 10% — reconsider the product.</div>
+      <div class="action-row">
+        <button class="act-btn" onclick="saveScenario('fba')">💾 Save scenario</button>
+        <button class="act-btn" onclick="copyLink()">🔗 Share</button>
+        <button class="act-btn" onclick="exportCSV()">⬇️ Export CSV</button>
+      </div>
+      <div class="history-section" id="fba-history"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta-box">
+  <h3>More Free Business Tools</h3>
+  <p>Invoice clients professionally. Create QR codes for your business. All free, no sign-up.</p>
+  <div class="cta-links">
+    <a href="https://bizinvoicegen.com" class="cta-btn cta-btn-white" target="_blank" rel="noopener">Free Invoice Generator →</a>
+    <a href="https://bizqrgen.com" class="cta-btn cta-btn-ghost" target="_blank" rel="noopener">Free QR Code Generator →</a>
+  </div>
+</div>
+
+<div class="bottom-grid">
+  <div class="ad-rect-wrap" role="complementary" aria-label="Advertisement"><!-- AdSense 300×250 -->Advertisement · 300×250</div>
+  <div style="padding:16px 0">
+    <div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:8px">Running a small business?</div>
+    <p style="font-size:13px;color:var(--ink3);line-height:1.7;margin-bottom:12px">Get your website online with <a href="https://www.hostinger.com?REFERRALCODE=ACGMGKKMT9LE" target="_blank" rel="noopener sponsored" style="color:var(--green);font-weight:600">reliable web hosting from Hostinger</a> — trusted by millions of businesses, from $2.99/month.</p>
+    <p style="font-size:12px;color:var(--ink4)">More guides: <a href="https://bizinvoicegen.com/blog/" style="color:var(--green)">Invoice guides</a> · <a href="https://bizqrgen.com/blog/" style="color:var(--green)">QR code tips</a></p>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div style="margin-bottom:8px">
+    <a href="#">Privacy Policy</a><a href="#">Terms of Service</a>
+    <a href="https://bizinvoicegen.com" target="_blank" rel="noopener">Invoice Generator</a>
+    <a href="https://bizqrgen.com" target="_blank" rel="noopener">QR Code Generator</a>
+  </div>
+  © 2026 BizMargin.com — Free Profit Margin Calculator for Amazon Sellers & Small Businesses
+</footer>
+
+<script>
+// ===== STORAGE =====
+const STORE = 'bizmargin.v1.scenarios';
+const CONSENT = 'bizmargin.v1.consent';
+
+function loadHistory(){ try{return JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){return []} }
+function saveHistory(h){ try{localStorage.setItem(STORE,JSON.stringify(h.slice(0,25)))}catch(e){} }
+
+function saveScenario(type){
+  const labels={margin:'Margin',markup:'Markup',selling:'Selling Price',breakeven:'Break-Even',fba:'FBA'};
+  const now=new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  const h=loadHistory();
+  const state=captureState(type);
+  h.unshift({id:Date.now(),type,label:labels[type],time:now,state});
+  saveHistory(h);
+  renderHistory(type);
+  showToast('✅ Scenario saved');
+}
+
+function captureState(type){
+  const ids={margin:['m-cost','m-sell','m-currency'],markup:['mk-cost','mk-pct','mk-currency'],selling:['sp-cost','sp-margin','sp-currency'],breakeven:['be-fixed','be-var','be-price','be-currency'],fba:['fba-price','fba-cost','fba-ref','fba-fee','fba-other']};
+  const s={};
+  (ids[type]||[]).forEach(id=>{ const el=document.getElementById(id); if(el) s[id]=el.value; });
+  return s;
+}
+
+function restoreState(state){
+  Object.entries(state).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.value=val; });
+}
+
+function renderHistory(type){
+  const el=document.getElementById(type+'-history');
+  if(!el) return;
+  const h=loadHistory().filter(i=>i.type===type).slice(0,5);
+  if(!h.length){el.innerHTML='';return;}
+  el.innerHTML=`<div class="history-title">Saved scenarios</div>`+h.map(i=>`<div class="history-item" onclick="loadScenario('${i.id}','${type}')" title="Load this scenario"><span class="h-name">${i.label}</span><span class="h-meta">${i.time}</span></div>`).join('');
+}
+
+function loadScenario(id,type){
+  const h=loadHistory();
+  const item=h.find(i=>i.id==id);
+  if(!item) return;
+  restoreState(item.state);
+  const fns={margin:calcMargin,markup:calcMarkup,selling:calcSelling,breakeven:calcBreakeven,fba:calcFBA};
+  if(fns[type]) fns[type]();
+  showToast('↩️ Scenario loaded');
+}
+
+// ===== FORMATTING =====
+function fmt(n, currency='USD'){
+  if(!isFinite(n)) return '∞';
+  const locales={USD:'en-US',GBP:'en-GB',EUR:'de-DE',JPY:'ja-JP',AUD:'en-AU',CAD:'en-CA'};
+  return new Intl.NumberFormat(locales[currency]||'en-US',{style:'currency',currency,maximumFractionDigits:2}).format(n);
+}
+function fmtPct(n){ return isFinite(n)?n.toFixed(2)+'%':'—' }
+function pillClass(m){ return m>=40?'pill-green':m>=20?'pill-amber':'pill-red' }
+function pillText(m){ return m>=40?'Good':m>=20?'Fair':'Low' }
+function gaugeColor(m){ return m>=40?'var(--green)':m>=20?'var(--amber)':'var(--red)' }
+
+// ===== DEBOUNCE =====
+function debounce(fn,wait=80){ let t; return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),wait)} }
+
+// ===== CALCULATIONS =====
+function calcMargin(){
+  const cur=document.getElementById('m-currency').value;
+  const cost=parseFloat(document.getElementById('m-cost').value)||0;
+  const sell=parseFloat(document.getElementById('m-sell').value);
+  const sellEl=document.getElementById('m-sell');
+  const warn=document.getElementById('m-warning');
+  if(!sell||sell<=0){
+    document.getElementById('m-sell-err').classList.add('show');
+    sellEl.classList.add('invalid');
+    document.getElementById('m-r-revenue').textContent='—';
+    document.getElementById('m-r-cost').textContent='—';
+    document.getElementById('m-r-profit').textContent='—';
+    document.getElementById('m-r-margin').textContent='Enter a selling price';
+    return;
+  }
+  document.getElementById('m-sell-err').classList.remove('show');
+  sellEl.classList.remove('invalid');
+  const profit=sell-cost;
+  const margin=(profit/sell)*100;
+  document.getElementById('m-r-revenue').textContent=fmt(sell,cur);
+  document.getElementById('m-r-cost').textContent=fmt(cost,cur);
+  document.getElementById('m-r-profit').textContent=fmt(profit,cur);
+  document.getElementById('m-r-profit').style.color=profit<0?'var(--red)':'var(--ink)';
+  document.getElementById('m-r-margin').innerHTML=fmtPct(margin)+' <span class="result-pill '+pillClass(margin)+'">'+pillText(margin)+'</span>';
+  document.getElementById('m-gauge').style.width=Math.max(0,Math.min(margin,100))+'%';
+  document.getElementById('m-gauge').style.background=gaugeColor(margin);
+  warn.classList.toggle('show',profit<0);
+  const tips=['','A margin under 20% is risky — review your costs or pricing.','A 20–40% margin is acceptable. Push towards 40%+ for better resilience.','Solid 40–60% margin — you have room for marketing and growth.','Excellent 60%+ margin — protect it and scale.'];
+  document.getElementById('m-tip').textContent=margin<20?tips[1]:margin<40?tips[2]:margin<60?tips[3]:tips[4];
+  document.getElementById('m-live-label').textContent=fmtPct(margin)+' margin';
+  updateHash();
+}
+const db_margin=debounce(calcMargin);
+
+function calcMarkup(){
+  const cur=document.getElementById('mk-currency').value;
+  const cost=parseFloat(document.getElementById('mk-cost').value)||0;
+  const pct=parseFloat(document.getElementById('mk-pct').value)||0;
+  document.getElementById('mk-slider').value=Math.min(pct,300);
+  const amt=cost*(pct/100);
+  const sell=cost+amt;
+  const margin=sell>0?(amt/sell)*100:0;
+  document.getElementById('mk-r-cost').textContent=fmt(cost,cur);
+  document.getElementById('mk-r-amt').textContent=fmt(amt,cur);
+  document.getElementById('mk-r-sell').textContent=fmt(sell,cur);
+  document.getElementById('mk-r-margin').textContent=fmtPct(margin);
+  updateHash();
+}
+const db_markup=debounce(calcMarkup);
+
+function calcSelling(){
+  const cur=document.getElementById('sp-currency').value;
+  const cost=parseFloat(document.getElementById('sp-cost').value)||0;
+  const mp=parseFloat(document.getElementById('sp-margin').value)||1;
+  document.getElementById('sp-slider').value=mp;
+  const sell=mp>=100?0:cost/(1-mp/100);
+  const profit=sell-cost;
+  const markup=cost>0?(profit/cost)*100:0;
+  document.getElementById('sp-r-cost').textContent=fmt(cost,cur);
+  document.getElementById('sp-r-profit').textContent=fmt(profit,cur);
+  document.getElementById('sp-r-sell').textContent=fmt(sell,cur);
+  document.getElementById('sp-r-markup').textContent=fmtPct(markup);
+  document.getElementById('sp-gauge').style.width=Math.min(mp,100)+'%';
+  document.getElementById('sp-gauge').style.background=gaugeColor(mp);
+  updateHash();
+}
+const db_selling=debounce(calcSelling);
+
+function calcBreakeven(){
+  const cur=document.getElementById('be-currency').value;
+  const fixed=parseFloat(document.getElementById('be-fixed').value)||0;
+  const varCost=parseFloat(document.getElementById('be-var').value)||0;
+  const price=parseFloat(document.getElementById('be-price').value)||0.01;
+  const contrib=price-varCost;
+  const contribPct=price>0?(contrib/price)*100:0;
+  const warn=document.getElementById('be-warning');
+  const errEl=document.getElementById('be-var-err');
+  if(varCost>=price){
+    errEl.classList.add('show');
+    warn.classList.add('show');
+    document.getElementById('be-r-units').textContent='Unprofitable';
+    document.getElementById('be-r-rev').textContent='—';
+    return;
+  }
+  errEl.classList.remove('show');
+  warn.classList.remove('show');
+  const units=Math.ceil(fixed/contrib);
+  const rev=units*price;
+  document.getElementById('be-r-contrib').textContent=fmt(contrib,cur);
+  document.getElementById('be-r-contribpct').textContent=fmtPct(contribPct);
+  document.getElementById('be-r-units').textContent=units.toLocaleString()+' units';
+  document.getElementById('be-r-rev').textContent=fmt(rev,cur);
+  document.getElementById('be-tip').textContent=`To cover ${fmt(fixed,cur)} in fixed costs at ${fmt(price,cur)}/unit, you need to sell ${units.toLocaleString()} units/month. Every unit beyond that is profit.`;
+  updateHash();
+}
+const db_breakeven=debounce(calcBreakeven);
+
+function calcFBA(){
+  const cur=document.getElementById('fba-price').value?'USD':'USD';
+  const price=parseFloat(document.getElementById('fba-price').value)||0;
+  const cost=parseFloat(document.getElementById('fba-cost').value)||0;
+  const refPct=parseFloat(document.getElementById('fba-ref').value)||0;
+  const fbaFee=parseFloat(document.getElementById('fba-fee').value)||0;
+  const other=parseFloat(document.getElementById('fba-other').value)||0;
+  const refAmt=Math.round(price*(refPct/100)*100)/100;
+  const totalCost=cost+refAmt+fbaFee+other;
+  const profit=price-totalCost;
+  const margin=price>0?(profit/price)*100:0;
+  const warn=document.getElementById('fba-warning');
+  document.getElementById('fba-r-price').textContent='$'+price.toFixed(2);
+  document.getElementById('fba-r-ref').textContent='−$'+refAmt.toFixed(2);
+  document.getElementById('fba-r-fee').textContent='−$'+fbaFee.toFixed(2);
+  document.getElementById('fba-r-cost').textContent='−$'+cost.toFixed(2);
+  document.getElementById('fba-r-other').textContent='−$'+other.toFixed(2);
+  document.getElementById('fba-r-profit').textContent='$'+profit.toFixed(2);
+  document.getElementById('fba-r-profit').style.color=profit>=0?'var(--green-d)':'var(--red)';
+  document.getElementById('fba-r-margin').innerHTML=fmtPct(margin)+' <span class="result-pill '+pillClass(margin)+'">'+pillText(margin)+'</span>';
+  document.getElementById('fba-gauge').style.width=Math.max(0,Math.min(margin,100))+'%';
+  document.getElementById('fba-gauge').style.background=gaugeColor(margin);
+  warn.classList.toggle('show',profit<0);
+  updateHash();
+  renderHistory('fba');
+}
+const db_fba=debounce(calcFBA);
+
+// ===== PRESETS =====
+function setFBAPreset(mkt,btn){
+  const presets={us:{ref:15,fee:3.50},uk:{ref:15,fee:2.90},eu:{ref:15,fee:3.10},ca:{ref:15,fee:3.80}};
+  const p=presets[mkt];
+  if(!p) return;
+  document.getElementById('fba-ref').value=p.ref;
+  document.getElementById('fba-fee').value=p.fee;
+  document.querySelectorAll('#fba-presets .preset-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  calcFBA();
+}
+
+function setCatFee(){
+  const sel=document.getElementById('fba-cat');
+  const val=sel.value;
+  if(val!=='custom'){
+    document.getElementById('fba-ref').value=val;
+    calcFBA();
+  }
+}
+
+function setFee(fee){
+  document.getElementById('fba-fee').value=fee;
+  calcFBA();
+}
+
+// ===== STEP BUTTONS =====
+function adj(id,delta){
+  const el=document.getElementById(id);
+  const val=parseFloat(el.value)||0;
+  el.value=Math.max(0,val+delta).toFixed(2);
+  el.dispatchEvent(new Event('input'));
+}
+
+// ===== TAB SWITCHING =====
+function switchCalc(id,btn){
+  document.querySelectorAll('.calc-tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false')});
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  if(btn){btn.classList.add('active');btn.setAttribute('aria-selected','true')}
+  document.getElementById('pane-'+id).classList.add('active');
+  renderHistory(id);
+}
+
+// ===== URL HASH =====
+function updateHash(){
+  const tab=document.querySelector('.calc-tab.active');
+  if(!tab) return;
+  const idx=['margin','markup','selling','breakeven','fba'];
+  const t=idx[Array.from(document.querySelectorAll('.calc-tab')).indexOf(tab)];
+  if(t) history.replaceState(null,'','#'+t);
+}
+
+function loadFromHash(){
+  const h=location.hash.replace('#','');
+  const valid=['margin','markup','selling','breakeven','fba'];
+  if(valid.includes(h)){
+    const btn=document.querySelectorAll('.calc-tab')[valid.indexOf(h)];
+    switchCalc(h,btn);
+  }
+}
+
+// ===== TOAST =====
+function showToast(msg){
+  let t=document.getElementById('_toast');
+  if(!t){t=document.createElement('div');t.id='_toast';t.className='toast';document.body.appendChild(t)}
+  t.textContent=msg;t.style.opacity='1';
+  setTimeout(()=>{t.style.opacity='0'},2200);
+}
+
+// ===== COPY LINK =====
+function copyLink(){
+  navigator.clipboard.writeText(location.href).then(()=>showToast('🔗 Link copied!')).catch(()=>showToast('Copy: '+location.href));
+}
+
+// ===== CSV EXPORT =====
+function exportCSV(){
+  const rows=[
+    ['Field','Value'],
+    ['Selling Price',document.getElementById('fba-r-price').textContent],
+    ['Referral Fee',document.getElementById('fba-r-ref').textContent],
+    ['FBA Fee',document.getElementById('fba-r-fee').textContent],
+    ['Product Cost',document.getElementById('fba-r-cost').textContent],
+    ['Other Costs',document.getElementById('fba-r-other').textContent],
+    ['Net Profit',document.getElementById('fba-r-profit').textContent],
+    ['Net Margin',document.getElementById('fba-r-margin').innerText],
+  ];
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='bizmargin-fba-scenario.csv';
+  a.click();
+  showToast('⬇️ CSV downloaded');
+}
+
+// ===== CONSENT + ADSENSE =====
+function handleConsent(accept){
+  localStorage.setItem(CONSENT,accept?'1':'0');
+  document.getElementById('cookieBanner').style.display='none';
+  if(accept) loadAdSense();
+}
+
+function loadAdSense(){
+  if(document.querySelector('script[src*="adsbygoogle"]')) return;
+  const s=document.createElement('script');
+  s.async=true;
+  s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7718343378574758';
+  s.crossOrigin='anonymous';
+  document.head.appendChild(s);
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded',()=>{
+  loadFromHash();
+  calcMargin(); calcMarkup(); calcSelling(); calcBreakeven(); calcFBA();
+  ['margin','markup','selling','breakeven','fba'].forEach(renderHistory);
+  const consent=localStorage.getItem(CONSENT);
+  if(consent===null) setTimeout(()=>document.getElementById('cookieBanner').style.display='flex',1500);
+  else if(consent==='1') loadAdSense();
+});
+</script>
+</body>
+</html>
